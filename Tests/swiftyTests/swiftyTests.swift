@@ -1,6 +1,7 @@
 import XCTest
 import class Foundation.Bundle
 
+
 final class swiftyTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
@@ -29,6 +30,10 @@ final class swiftyTests: XCTestCase {
         XCTAssertEqual(output, "Hello, world!\n")
     }
 
+    func hoi(){
+      XCTAssertEqual("s", "s")
+    }
+
     /// Returns path to the built products directory.
     var productsDirectory: URL {
       #if os(macOS)
@@ -43,5 +48,6 @@ final class swiftyTests: XCTestCase {
 
     static var allTests = [
         ("testExample", testExample),
+        ("hoi", hoi),
     ]
 }
