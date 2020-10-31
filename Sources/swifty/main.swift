@@ -6,7 +6,7 @@ var col2 = ["sdf", "sfff"]
 
 
 
-var df = DataFrame(data: [["1", "2", "3"], ["3", "4", "5"]])
+var df = DataFrame(data: [["1", "2", "3"], ["3", "4", "5"]], columns: ["hoi", "poep"])
 
 print(df.columns)
 //print(df.data)\
@@ -14,4 +14,8 @@ print(df.columns)
 //print(df.data)
 print(table: [[1, 2], [2, 3]], header: df.columns!)
 
+
+print("Test subscript")
+
+print(df["hoi"])
 
