@@ -17,5 +17,7 @@ print(table: [[1, 2], [2, 3]], header: df.columns!)
 
 print("Test subscript")
 
-print(df["hoi"])
+var cols = ["poep", "hoi"]
+print(df[cols])
 
+//print("Index  is: " \(df.index))

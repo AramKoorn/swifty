@@ -6,8 +6,10 @@ public struct DataFrame {
     var index: Array<Int>?
     var data: Array<Any>?
 
-    // To select columns/values
+    // To select coluvaluesmns/
     var hashTable = Dictionary<String, Any>()
+    var hashTableIndex = Dictionary<AnyHashable, Any>()
+    
     
     init( data: Array<Any>? = nil, columns: Array<String>? = nil, index: Array<Int>? = nil) {
         
@@ -42,14 +44,54 @@ public struct DataFrame {
                 }
         // self.hashTable = hashTable
             }
+
+
+
+        // if you fill in an index it means you have dasta
+        if (self.index == nil) {
+            // Check if number of index elements are equal to number of rows
+            
+            // Create index
+            var tmp = self.data![0] as! [Any]
+            self.index = Array(0 ..< tmp.count)
+            var x = 1
+           // self.index = Array(0 .. < tmp.count)
+            }   
+        
+        //Create ref table for the index 
+        for (idx, x) in self.index!.enumerated() {
+            var tmp = [Any]()
+            for (val) in self.data! {
+                // Make sure that we go from Any to an Array<Any>
+               var tmp2 = val as! Array<Any>
+               //print(tmp2)
+               tmp.append(tmp2[idx])
+            }
+            hashTableIndex[x] = tmp
+        }
+
+        for (k, v) in hashTableIndex {
+            print("key:  \(k)")
+            print("value:  \(v)")
+        }
+
+     
     }
 
     // Subscript columsn e.g. df["col1"]
-    subscript(columns: String) -> Any {
+    subscript(columns: Array<String>) -> Any {
+
+        var dict_sub = hashTable.filter({  columns.contains($0.key) }) 
         
-        return hashTable[columns]
+        return dict_sub
 
     }
 
 
 }
+
+// How to filter dictionaries
+// var sel = ["Tom", "Fabien"]
+// var namesAndAges = ["Tom": 25, "Michael": 35, "Harry": 28, "Fabien": 16]
+// var underAge = namesAndAges.filter({  sel.contains($0.key) }) // [(key: "Fabien", value: 16)]
+// print(underAge)
