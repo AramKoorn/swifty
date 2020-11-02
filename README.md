@@ -1,9 +1,9 @@
 # swifty
 
 todo:
-- Index hastable
 - subscript
 - update function based on hashtable
+- Should be possible to make index string or int
 
 
 WHat to do when the skeleton of of dataframe is there (Order based on priority)

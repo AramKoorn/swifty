@@ -51,10 +51,7 @@ public struct DataFrame {
         if (self.index == nil) {
             // Check if number of index elements are equal to number of rows
             
-            // Create index
-            var tmp = self.data![0] as! [Any]
-            self.index = Array(0 ..< tmp.count)
-            var x = 1
+            // Create index SubSequence {
            // self.index = Array(0 .. < tmp.count)
             }   
         
@@ -78,17 +75,36 @@ public struct DataFrame {
      
     }
 
-    // Subscript columsn e.g. df["col1"]
-    subscript(columns: Array<String>) -> Any {
+    // Subscript columns e.g. df["col1"]
+    // subscript should eventually return DataFrame
+    public subscript(columns: Array<String>) -> Any {
 
-        var dict_sub = hashTable.filter({  columns.contains($0.key) }) 
-        
+        var dict_sub = hashTable.filter({  columns.contains($0.key) })
+        //updateMembers(hashTable: hashTable, hashTableIndex: hashTableIndex) 
+        //self.test()
         return dict_sub
 
     }
 
 
+    mutating func updateMembers(hashTable: Dictionary<String, Any>, hashTableIndex: Dictionary<AnyHashable, Any>){
+        print(Array(hashTable.keys))
+        //self.columns = Array(hashTable.keys)
+
+    }
+
+
 }
+
+extension DataFrame {
+
+    mutating func test() {
+        print("This does nothing yet")
+    }
+
+    
+}
+
 
 // How to filter dictionaries
 // var sel = ["Tom", "Fabien"]
