@@ -1,7 +1,9 @@
+/**
+DataFrame core
+ */
 public struct DataFrame {
-    
-    // Force columns to be strings for now
-    
+
+
     var columns: Array<String>?
     var index: Array<Int>?
     var data: Array<Any>?
@@ -11,7 +13,12 @@ public struct DataFrame {
     var hashTableIndex = Dictionary<AnyHashable, Any>()
     
     
-    init( data: Array<Any>? = nil, columns: Array<String>? = nil, index: Array<Int>? = nil) {
+    /// Initalizes the DataFrame
+    ///   - Parameters:
+    ///   - data: Data. 
+    ///   - columns: columns of the dataframe.
+    ///   - index: Array with indexing.  
+    public init( data: Array<Any>? = nil, columns: Array<String>? = nil, index: Array<Int>? = nil) {
         
         self.columns = columns
         self.index = index
@@ -45,14 +52,14 @@ public struct DataFrame {
         // self.hashTable = hashTable
             }
 
-
-
-        // if you fill in an index it means you have dasta
-        if (self.index == nil) {
+        // Create a range index if index was not supplied and there is data
+        if (self.index == nil && self.data != nil) {
             // Check if number of index elements are equal to number of rows
             
             // Create index SubSequence {
-           // self.index = Array(0 .. < tmp.count)
+            // self.index = Array(0 .. < tmp.count)
+            var row = self.data![0] as! Array<Any>
+            self.index = Array(0 ..< row.count)
             }   
         
         //Create ref table for the index 
@@ -96,7 +103,7 @@ public struct DataFrame {
 
 }
 
-extension DataFrame {
+extension DataFrame{
 
     mutating func test() {
         print("This does nothing yet")
