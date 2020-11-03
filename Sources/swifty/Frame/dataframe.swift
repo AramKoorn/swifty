@@ -86,11 +86,19 @@ public struct DataFrame {
     // subscript should eventually return DataFrame
     public subscript(columns: Array<String>) -> Any {
 
+        get {
         var dict_sub = hashTable.filter({  columns.contains($0.key) })
         //updateMembers(hashTable: hashTable, hashTableIndex: hashTableIndex) 
-        //self.test()
+        //self.test(
         return dict_sub
-
+        }
+        set {
+            for col in columns {
+                hashTable[col] = newValue
+            }
+            self.columns = Array(hashTable.keys)
+            self.data = Array(hashTable.values)
+        }
     }
 
 
