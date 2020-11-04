@@ -119,10 +119,3 @@ public struct DataFrame {
 
     
 // }
-
-
-// How to filter dictionaries
-// var sel = ["Tom", "Fabien"]
-// var namesAndAges = ["Tom": 25, "Michael": 35, "Harry": 28, "Fabien": 16]
-// var underAge = namesAndAges.filter({  sel.contains($0.key) }) // [(key: "Fabien", value: 16)]
-// print(underAge)
