@@ -7,6 +7,7 @@ todo:
 - Conditional queries --> df.loc["col1" == "foo" && "col2 == "bar"]
 - update function based on hashtable
 - Should be possible to make index string or int
+- Check how unittests work for other packages
 
 
 WHat to do when the skeleton of of dataframe is there (Order based on priority)
