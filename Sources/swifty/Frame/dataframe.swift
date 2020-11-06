@@ -119,3 +119,38 @@ public struct DataFrame {
 
     
 // }
+
+
+// How to filter dictionaries
+// var sel = ["Tom", "Fabien"]
+// var namesAndAges = ["Tom": 25, "Michael": 35, "Harry": 28, "Fabien": 16]
+// var underAge = namesAndAges.filter({  sel.contains($0.key) }) // [(key: "Fabien", value: 16)]
+// print(underAge)
+
+
+
+// var values = Column.stringColumn(Series(values: ["1", "2", "3"]))
+// public enum Column {
+//         case intColumn (Series<Int>)
+//         case doubleColumn (Series<Double>)
+//         case stringColumn (Series<String>)
+    
+//         public init<SwiftyType>(values: Series<SwiftyType>){
+
+//             switch values {
+//             case let intSeries as Series<Int>:
+//                 self = .intColumn(intSeries)
+//                 print("int")
+//             case let doubleSeries as Series<Double>:
+//                 self = .doubleColumn(doubleSeries)
+//                 print("double")
+//             case let stringSeries as Series<String>:
+//                 self = .stringColumn(stringSeries)
+//                 print(stringSeries)
+//             default:
+//                 fatalError("Illegal type")
+            
+//         }
+//     }
+
+// }

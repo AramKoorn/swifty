@@ -42,3 +42,21 @@ public subscript(columns: Array<Any>) -> Array<Any> {
     }
 }
 }
+
+
+// extension DataFrame1 {
+// public subscript(columns: [String]) -> Any {
+
+
+
+//     get {
+
+
+           
+//     }
+
+//     set {
+       
+//     }
+// }
+// }
