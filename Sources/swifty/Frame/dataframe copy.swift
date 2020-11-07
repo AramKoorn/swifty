@@ -159,3 +159,10 @@ extension DataFrame1 {
 
     }
 }
+
+
+extension DataFrame1 {
+    public func shape() -> (Int, Int) {
+        return (2, 2)
+    }
+}

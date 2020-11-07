@@ -33,3 +33,6 @@ print(df1.columns)
 
 print("df2:   " )
 print(df2)
+
+
+print(df1.shape())
