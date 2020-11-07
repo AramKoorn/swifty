@@ -45,6 +45,7 @@ swift doc generate /home/aram/projects/swift/swifty/Sources/ --module-name swift
 - filter DataFrame based of pattern
 - Be able to do operations on columns
 - Get DataFrame dimensions
+- Query data
 - Documentation
 
 # Nice to haves

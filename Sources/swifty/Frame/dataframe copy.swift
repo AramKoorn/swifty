@@ -42,17 +42,19 @@ public struct DataFrame1{
                 var series = handleIntArray($0 as! [Int])
                 hashInt[self.columns![i]] = series
                 hashTypes[self.columns![i]] = "Int"
+                values.append(series)
                 i += 1
             case _ as Double:
                 var series = handleDoubleArray($0 as! [Double])
                 hashDouble[self.columns![i]] = series
                 hashTypes[self.columns![i]] = "Double"
+                values.append(series)
                 i += 1
             case _ as String:
                 var series = handleStringArray($0 as! [String])
                 hashString[self.columns![i]] = series
                 hashTypes[self.columns![i]] = "String"
-
+                values.append(series)
                 i += 1
             default:
                 print("Unsupported type")
@@ -163,6 +165,11 @@ extension DataFrame1 {
 
 extension DataFrame1 {
     public func shape() -> (Int, Int) {
+
+            var x = 1
+
+        //  (self.values[0].count, self.values.count)
         return (2, 2)
+
     }
 }
