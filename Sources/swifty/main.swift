@@ -18,5 +18,7 @@ readCSV(loc: "projects/swift/swifty/Sources/swifty/data/testData.csv")
 // df.query(column: "poep", values: ["3"])
 
 // Test the new dataframe structure 
-var df1 = DataFrame1(data: [[1, 2, 3], ["1", "2", "3"], [1.1, 2.2, 3.3]])
-print(df1)
+var df1 = DataFrame1(data: [[1, 2, 3], ["1", "2", "3"], [1.1, 2.2, 3.3], [4, 6, 7]])
+print(df1.columns)
+//print(df1)
+print(df1.hashTypes)
