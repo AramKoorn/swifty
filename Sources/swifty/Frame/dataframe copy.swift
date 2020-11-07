@@ -9,9 +9,12 @@ public struct DataFrame1{
     var hashInt = Dictionary<String, Series<Int>>()
     var hashDouble = Dictionary<String, Series<Double>>()
     var hashString = Dictionary<String, Series<String>>()
-
+    
     // Hashtable for the types
     var hashTypes = Dictionary<String, String>()
+
+    // Initialize values
+    var values = [Any]()
 
     init(data: Array<Array<Any>>? = nil, columns: [String]? = nil, index: [Int]? = nil) {
         self.data = data
@@ -75,11 +78,11 @@ public struct DataFrame1{
     }    
 }
 
-
 extension DataFrame1 {
     mutating func updateData() {
 
         var newData = [Any]()
+        //newData = Array<Array<Any>>?
 
         for col in self.columns! {
 
@@ -100,8 +103,13 @@ extension DataFrame1 {
                 newData.append(hashString[col]!)
             }
         }
+
+        // Update values
+        self.values = newData
+
+        // 
         var x = 1
-       // self.data = newData
+
 
     }
 }

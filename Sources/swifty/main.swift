@@ -19,7 +19,17 @@ import Path
 
 // Test the new dataframe structure 
 var df1 = DataFrame1(data: [[1, 2, 3], ["1", "2", "3"], [1.1, 2.2, 3.3], [4, 6, 7]], columns: ["col1", "col2", "col3", "col4"])
+var df2 = df1
 df1.rename(mapper: ["col1": "renamedCol1"])
+df1.rename(mapper: ["col2": "foo"])
 print(df1.columns!)
 //print(df1)
 print(df1.hashTypes)
+
+
+print("COmplete dataframe: ")
+print(df1.values)
+print(df1.columns)
+
+print("df2:   " )
+print(df2)
