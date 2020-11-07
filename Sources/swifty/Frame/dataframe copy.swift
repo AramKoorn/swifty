@@ -28,31 +28,34 @@ public struct DataFrame1{
             self.columns = Array(0 ..< self.data!.count).map { String($0) }
         }
 
-        // Cast each array to Series with correct type
-        var i = 0
-        data!.forEach {
-        guard !$0.isEmpty else { return }
-        switch $0.first {
-        case _ as Int:
-            var series = handleIntArray($0 as! [Int])
-            hashInt[self.columns![i]] = series
-            hashTypes[self.columns![i]] = "Int"
-            i += 1
-        case _ as Double:
-            var series = handleDoubleArray($0 as! [Double])
-            hashDouble[self.columns![i]] = series
-            hashTypes[self.columns![i]] = "Double"
-            i += 1
-        case _ as String:
-            var series = handleStringArray($0 as! [String])
-            hashString[self.columns![i]] = series
-            hashTypes[self.columns![i]] = "String"
+        if (self.data != nil) {
 
-            i += 1
-        default:
-            print("Unsupported type")
+            // Cast each array to Series with correct type
+            var i = 0
+            data!.forEach {
+            guard !$0.isEmpty else { return }
+            switch $0.first {
+            case _ as Int:
+                var series = handleIntArray($0 as! [Int])
+                hashInt[self.columns![i]] = series
+                hashTypes[self.columns![i]] = "Int"
+                i += 1
+            case _ as Double:
+                var series = handleDoubleArray($0 as! [Double])
+                hashDouble[self.columns![i]] = series
+                hashTypes[self.columns![i]] = "Double"
+                i += 1
+            case _ as String:
+                var series = handleStringArray($0 as! [String])
+                hashString[self.columns![i]] = series
+                hashTypes[self.columns![i]] = "String"
+
+                i += 1
+            default:
+                print("Unsupported type")
         }
             }
+                }
 
         // Cast to Series Int
         func handleIntArray(_ array: [Int]) -> Series<Int>{
@@ -68,5 +71,83 @@ public struct DataFrame1{
         func handleStringArray(_ array: [String]) -> Series<String> {
             return Series(values: array)
         }   
+        
     }    
+}
+
+
+extension DataFrame1 {
+    mutating func updateData() {
+
+        var newData = [Any]()
+
+        for col in self.columns! {
+
+            print(col)
+            
+            if hashTypes[col]! == "Int" {
+
+                newData.append(hashInt[col]!)
+            }
+
+            if hashTypes[col]! == "Double" {
+
+                newData.append(hashDouble[col]!)
+            }
+            
+            if hashTypes[col]! == "String" {
+
+                newData.append(hashString[col]!)
+            }
+        }
+        var x = 1
+       // self.data = newData
+
+    }
+}
+
+// Rename columns
+extension DataFrame1 {
+
+    mutating func rename(mapper: Dictionary<String, String>) {
+
+        for (k, v) in mapper {
+
+            // overwrite the column name
+            self.columns = self.columns!.map({ return $0 == k ? v : $0 })
+        }
+
+        // check which hashtables we have to update
+        var tmpTypes = hashTypes.filter({  Array(mapper.keys).contains($0.key) }) 
+
+        // Loop over tmpTypes and get the correct hashtable and update 
+        // probably want to use enum switch case for this
+        for (col, t) in tmpTypes {
+            
+            if t == "Int" {
+
+                switchKey(&hashInt, fromKey: col, toKey: mapper[col]!)
+            }
+
+            if t == "Double" {
+
+                switchKey(&hashDouble, fromKey: col, toKey: mapper[col]!)
+            }
+
+            if t == "String" {
+
+                switchKey(&hashString, fromKey: col, toKey: mapper[col]!)
+            }
+            
+            // Finally update the key from the hashTypes
+            switchKey(&hashTypes, fromKey: col, toKey: mapper[col]!)
+
+        }
+
+        // Update the data
+        updateData()
+
+        var x = 1 
+
+    }
 }
