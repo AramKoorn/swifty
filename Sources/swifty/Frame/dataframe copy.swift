@@ -166,10 +166,25 @@ extension DataFrame1 {
 extension DataFrame1 {
     public func shape() -> (Int, Int) {
 
-            var x = 1
+        // Take arbitrary column
+        var tmpCol = self.columns![0]
+        var tmpType = hashTypes[tmpCol]!
+        var rows = -1  // Init with -1 value
+        
+        
+        if tmpType == "Int" {
+            rows = hashInt[tmpCol]!.values.count
+        }
+        if tmpType == "Double" {
+            rows = hashDouble[tmpCol]!.values.count
+
+        }
+        if tmpType == "String" {
+            rows = hashString[tmpCol]!.values.count
+        }
 
         //  (self.values[0].count, self.values.count)
-        return (2, 2)
+        return (rows, self.data!.count)
 
     }
 }
