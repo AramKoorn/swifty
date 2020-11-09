@@ -5,18 +5,15 @@ public subscript(columns: Array<String>) -> DataFrame {
     // Columns to get
     var tmpData = Array<Array<Any>>()
     
-    // check which hashtables we have to update
-    var tmpTypes = hashTypes.filter({  Array(columns).contains($0.key) }) 
-
-    for (col, val) in tmpTypes {
+    for (col) in columns{
   
-      if val == "Int" {
+      if hashTypes[col] == "Int" {
         tmpData.append(hashInt[col]!.values)
       }
-      if val == "Double" {
+      if hashTypes[col] == "Double" {
         tmpData.append(hashDouble[col]!.values)
       }
-      if val == "String" {
+      if hashTypes[col] == "String" {
         tmpData.append(hashString[col]!.values)
       }
     }
@@ -25,6 +22,12 @@ public subscript(columns: Array<String>) -> DataFrame {
   }
 
   set {
+
+    // Scenario 1 df[["newCOl"]] = df[["col"]]
+    // In this case just merge the hashtables together
+
+    var t = 1
+    var x = 3
      
     }
   }

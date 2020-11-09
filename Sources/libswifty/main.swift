@@ -52,5 +52,7 @@ print(filtered)
 var x = ["el1", "el2", "el3", "col1", "col2"]
 print(x.filter {$0.contains("el")})
 
-print(df1[["col3", "col4"]])
+//print(df1[["col3", "col4"]])
 
+
+df1[["newCol"]] =  df1[["col4"]]
