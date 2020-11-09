@@ -21,7 +21,7 @@ import Path
 // df.query(column: "poep", values: ["3"])
 
 // Test the new dataframe structure 
-var df1 = DataFrame1(data: [[1, 2, 3], ["1", "2", "3"], [1.1, 2.2, 3.3], [4, 6, 7]], columns: ["col1", "col2", "col3", "col4"])
+var df1 = DataFrame(data: [[1, 2, 3], ["1", "2", "3"], [1.1, 2.2, 3.3], [4, 6, 7]], columns: ["col1", "col2", "col3", "col4"])
 var df2 = df1
 print(df1.shape())
 
@@ -43,4 +43,5 @@ print(df2)
 
 
 print(df1.shape())
+print(df1.hashInt["col4"]!.values)
 

@@ -3,9 +3,9 @@
 
 // todo: add features like values count etc.
 public struct Series<SwiftyType> {
-    var values: Array<SwiftyType>
+    public var values: Array<SwiftyType>
 
-    init(values: Array<SwiftyType>) {
+    public init(values: Array<SwiftyType>) {
         self.values = values
     }
 }

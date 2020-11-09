@@ -6,3 +6,20 @@ func switchKey<T, U>(_ myDict: inout [T:U], fromKey: T, toKey: T) {
     }
 }  
 
+
+// extension DataFrame1 {
+//     public func selDict(col
+//     : String) -> Dictionary<String, Series<SwiftyType>> {
+            
+//         if hashTypes[col]! == "Int" {
+//             return hashInt
+//         }
+//         if hashTypes[col]! == "Double" {
+//             return hashDouble
+//         }
+
+//         if hashTypes[col]! == "String" {
+//             return hashString
+//         }
+//     }
+// }

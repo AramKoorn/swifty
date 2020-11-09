@@ -1,36 +1,10 @@
 @testable import swifty
 import XCTest
 import class Foundation.Bundle
-var df = DataFrame1(data: [[1, 2, 3]])
-
+var df = DataFrame(data: [[1, 2, 3]])
+// print(df)
 
 final class swiftyTests: XCTestCase {
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-
-        // Some of the APIs that we use below are available in macOS 10.13 and above.
-        guard #available(macOS 10.13, *) else {
-            return
-        }
-
-        let fooBinary = productsDirectory.appendingPathComponent("swifty")
-
-        let process = Process()
-        process.executableURL = fooBinary
-
-        let pipe = Pipe()
-        process.standardOutput = pipe
-
-        try process.run()
-        process.waitUntilExit()
-
-        let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        let output = String(data: data, encoding: .utf8)
-
-        XCTAssertEqual(output, "Hello, world!\n")
-    }
 
     func testHoi(){
       XCTAssertEqual("s", "s")
@@ -47,9 +21,4 @@ final class swiftyTests: XCTestCase {
         return Bundle.main.bundleURL
       #endif
     }
-
-    // static var allTests = [
-    //     ("testExample", testExample),
-    //     ("testHoi", testHoi),
-    // ]
 }

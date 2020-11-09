@@ -12,9 +12,9 @@ todo:
 
 
 WHat to do when the skeleton of of dataframe is there (Order based on priority)
-- drop columns
+- drop columns ✓
 - rename columns ✓
-- add filter method --> get all columns that have "PATTERN" in column name
+- add filter method 
 - read and write csv
 - merge 
 - groupby
@@ -47,6 +47,9 @@ swift doc generate /home/aram/projects/swift/swifty/Sources/ --module-name swift
 - Get DataFrame dimensions
 - Query data
 - Documentation
+- Replace values
+
+# Unit testing framework
 
 # Nice to haves
 - Slicing

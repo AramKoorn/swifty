@@ -1,156 +1,210 @@
-/**
-DataFrame core
- */
-public struct DataFrame {
-
-
-    var columns: Array<String>?
-    var index: Array<Any>?
-    var data: Array<Any>?
-
-    //  e.g.
-    //["col1": ["index": [1, 2, 3, 4], "data": ["col1": [1, 2, 3, 4], "col2": [3, 4, 5, 6]]]
-    var hashTable = Dictionary<AnyHashable, Any>()   
+public struct DataFrame{
     
-    /// Initalizes the DataFrame
-    ///   - Parameters:
-    ///   - data: Data. 
-    ///   - columns: columns of the dataframe.
-    ///   - index: Array with indexing.  
-    public init( data: Array<Any>? = nil, columns: Array<String>? = nil, index: Array<Any>? = nil) {
-        
+    // Initializers
+    public var data: Array<Array<Any>>?
+    public var columns: [String]? // columns can be int, double or string
+    public var index: [Int]?
+    
+    // Hashtables --> Keys are the columns
+    public var hashInt = Dictionary<String, Series<Int>>()
+    public var hashDouble = Dictionary<String, Series<Double>>()
+    public var hashString = Dictionary<String, Series<String>>()
+    
+    // Hashtable for the types
+    public var hashTypes = Dictionary<String, String>()
+
+    // Initialize values
+    public var values = [Any]()
+
+    public init(data: Array<Array<Any>>? = nil, columns: [String]? = nil, index: [Int]? = nil) {
+        self.data = data
         self.columns = columns
         self.index = index
-        self.data = data
-        
-        // create index if it is not specified
-        if (self.index == nil) {
-            
+
+        // Init index if not specified as argument
+        if (self.index == nil && self.data != nil) {    
             let row = self.data![0] as! Array<Any>
             self.index = Array(0 ..< row.count) // int by default
-
         }
 
-        // init the index
-        hashTable["index"] = self.index
- 
-        // Create columns if they are nil
-        if (self.columns == nil) {
-
-            // check
-            // do {
-            //     // Check if Nr. col is equal to Nr. Arrays
-            //     let y = try! check(arr1: self.data!, arr2: self.columns!)
-            // } 
-
-            let arr = Array(0 ..< self.data!.count)
-            self.columns = arr.map { String($0) }
+        if (self.columns == nil && self.data != nil) {
+            self.columns = Array(0 ..< self.data!.count).map { String($0) }
         }
-        
+
         if (self.data != nil) {
 
-            var tmp = Dictionary<String, Any>()
-            for (idx, col) in self.columns!.enumerated() {
-                // tmp.append([col: self.data![idx]])
-                tmp[col] = self.data![idx]
+            // Cast each array to Series with correct type
+            var i = 0
+            data!.forEach {
+            guard !$0.isEmpty else { return }
+            switch $0.first {
+            case _ as Int:
+                var series = handleIntArray($0 as! [Int])
+                hashInt[self.columns![i]] = series
+                hashTypes[self.columns![i]] = "Int"
+                values.append(series)
+                i += 1
+            case _ as Double:
+                var series = handleDoubleArray($0 as! [Double])
+                hashDouble[self.columns![i]] = series
+                hashTypes[self.columns![i]] = "Double"
+                values.append(series)
+                i += 1
+            case _ as String:
+                var series = handleStringArray($0 as! [String])
+                hashString[self.columns![i]] = series
+                hashTypes[self.columns![i]] = "String"
+                values.append(series)
+                i += 1
+            default:
+                print("Unsupported type")
+        }
             }
-            hashTable["data"] = tmp 
-            }
+                }
+
+        // Cast to Series Int
+        func handleIntArray(_ array: [Int]) -> Series<Int>{
+            return Series(values: array)
+        }
+        
+        // Cast to Series Double
+        func handleDoubleArray(_ array: [Double]) -> Series<Double> {
+            return Series(values: array)
         }
 
-        public mutating func updateSelf(table: Dictionary<AnyHashable, Any> ) {
+        // Cast to string 
+        func handleStringArray(_ array: [String]) -> Series<String> {
+            return Series(values: array)
+        }   
+        
+    }    
+}
 
-            self.index = hashTable["index"] as! Array<Any>?
+extension DataFrame {
+    mutating func updateData() {
+
+        var newData = [Any]()
+        //newData = Array<Array<Any>>?
+
+        for col in self.columns! {
+
+            print(col)
             
-            var sub = hashTable["data"] as! Dictionary<String, Array<Any>>
-            var test = 1
+            if hashTypes[col]! == "Int" {
 
-            self.columns = Array(sub.keys)
-            self.data = Array(sub.values)
+                newData.append(hashInt[col]!)
+            }
 
+            if hashTypes[col]! == "Double" {
+
+                newData.append(hashDouble[col]!)
+            }
+            
+            if hashTypes[col]! == "String" {
+
+                newData.append(hashString[col]!)
+            }
         }
-   
-        public func printHashtable() {
-            print(hashTable)
-        }
 
+        // Update values
+        self.values = newData
 
     }
+}
 
+// Rename columns
+extension DataFrame {
 
-        // // Create a range index if index was not supplied and there is data
-        // if (self.index == nil && self.data != nil) {
-        //     // Check if number of index elements are equal to number of rows
+    mutating public func rename(mapper: Dictionary<String, String>) {
+
+        for (k, v) in mapper {
+
+            // overwrite the column name
+            self.columns = self.columns!.map({ return $0 == k ? v : $0 })
+        }
+
+        // check which hashtables we have to update
+        var tmpTypes = hashTypes.filter({  Array(mapper.keys).contains($0.key) }) 
+
+        // Loop over tmpTypes and get the correct hashtable and update 
+        // probably want to use enum switch case for this
+        for (col, t) in tmpTypes {
             
-        //     // Create index SubSequence {
-        //     // self.index = Array(0 .. < tmp.count)
-        //     var row = self.data![0] as! Array<Any>
-        //     self.index = Array(0 ..< row.count)
-        //     }   
+            if t == "Int" {
+
+                switchKey(&hashInt, fromKey: col, toKey: mapper[col]!)
+            }
+
+            if t == "Double" {
+
+                switchKey(&hashDouble, fromKey: col, toKey: mapper[col]!)
+            }
+
+            if t == "String" {
+
+                switchKey(&hashString, fromKey: col, toKey: mapper[col]!)
+            }
+            
+            // Finally update the key from the hashTypes
+            switchKey(&hashTypes, fromKey: col, toKey: mapper[col]!)
+
+        }
+
+        // Update the data
+        updateData()
+
+    }
+}
+
+
+extension DataFrame {
+    public func shape() -> (Int, Int) {
+
+        // Take arbitrary column
+        var tmpCol = self.columns![0]
+        var tmpType = hashTypes[tmpCol]!
+        var rows = -1  // Init with -1 value
         
-        // //Create ref table for the index 
-        // for (idx, x) in self.index!.enumerated() {
-        //     var tmp = [Any]()
-        //     for (val) in self.data! {
-        //         // Make sure that we go from Any to an Array<Any>
-        //        var tmp2 = val as! Array<Any>
-        //        //print(tmp2)
-        //        tmp.append(tmp2[idx])
-        //     }
-        //     hashTableIndex[x] = tmp
-        // }
+        
+        if tmpType == "Int" {
+            rows = hashInt[tmpCol]!.values.count
+        }
+        if tmpType == "Double" {
+            rows = hashDouble[tmpCol]!.values.count
 
-        // for (k, v) in hashTableIndex {
-        //     print("key:  \(k)")
-        //     print("value:  \(v)")
-        // }
+        }
+        if tmpType == "String" {
+            rows = hashString[tmpCol]!.values.count
+        }
 
-     
-    //}
+        //  (self.values[0].count, self.values.count)
+        return (rows, self.data!.count)
+        }
+}
 
+extension DataFrame {
+  mutating public func drop(columns: [String]) {
 
-// }
+    // drop the columns
+    self.columns = self.columns!.filter( {!columns.contains($0)})  
 
-// extension DataFrame{
+    // check which hashtables we have to update
+    var tmpTypes = hashTypes.filter({  Array(columns).contains($0.key) }) 
 
-//     mutating func test() {
-//         print("This does nothing yet")
-//     }
-
+    for (col, val) in tmpTypes {
+  
+      if val == "Int" {
+        hashInt = hashInt.filter({  Array(columns).contains($0.key) }) 
+      }
+      if val == "Double" {
+        hashDouble = hashDouble.filter({  Array(columns).contains($0.key) }) 
+      }
+      if val == "String" {
+        hashString = hashString.filter({  Array(columns).contains($0.key) }) 
+      }
     
-// }
-
-
-// How to filter dictionaries
-// var sel = ["Tom", "Fabien"]
-// var namesAndAges = ["Tom": 25, "Michael": 35, "Harry": 28, "Fabien": 16]
-// var underAge = namesAndAges.filter({  sel.contains($0.key) }) // [(key: "Fabien", value: 16)]
-// print(underAge)
-
-
-
-// var values = Column.stringColumn(Series(values: ["1", "2", "3"]))
-// public enum Column {
-//         case intColumn (Series<Int>)
-//         case doubleColumn (Series<Double>)
-//         case stringColumn (Series<String>)
-    
-//         public init<SwiftyType>(values: Series<SwiftyType>){
-
-//             switch values {
-//             case let intSeries as Series<Int>:
-//                 self = .intColumn(intSeries)
-//                 print("int")
-//             case let doubleSeries as Series<Double>:
-//                 self = .doubleColumn(doubleSeries)
-//                 print("double")
-//             case let stringSeries as Series<String>:
-//                 self = .stringColumn(stringSeries)
-//                 print(stringSeries)
-//             default:
-//                 fatalError("Illegal type")
-            
-//         }
-//     }
-
-// }
+    }
+    // Update data
+    updateData()
+  }
+} 
