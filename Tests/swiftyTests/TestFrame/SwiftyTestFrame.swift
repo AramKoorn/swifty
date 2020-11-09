@@ -24,7 +24,7 @@ public class TestFrame:  XCTestCase {
         ("testCol", testCol),
         ("testRename", testRename),
         ("testDropOneColumn", testDropOneColumn),
-
+        ("testDropMultipleColumn", testDropMultipleColumn),
        //("testRename", testRename),
     ]
   
@@ -49,6 +49,19 @@ public class TestFrame:  XCTestCase {
         XCTAssertEqual(df.columns!,  ["col1"])
         XCTAssertEqual(df.hashInt["col1"]!.values, [1, 2, 3])
     }
+    // Test if dropping of column
+    public func testDropMultipleColumn() {
+        var df = DataFrame(data: [[1, 2, 3], ["2", "2", "foo"], [1, 2, 3]],
+                           columns: ["col1", "col2", "col2test"])
+        df.drop(columns: ["col2"])
+        XCTAssertEqual(df.columns!,  ["col1", "col2test"])
+    }
+    // Test if filter on pattern matching works 
+    public func testFilterDataFrame() {
+        var df = DataFrame(data: [[1], [2], [3], [1]],
+                           columns: ["col1", "col2", "el1", "el2"] )
+        df.filter(pattern: "el")
+        XCTAssertEqual(df.columns!,  ["el1", "el2"])
+    }
 }
-
 

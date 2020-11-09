@@ -182,6 +182,7 @@ extension DataFrame {
         }
 }
 
+// Drop columns
 extension DataFrame {
   mutating public func drop(columns: [String]) {
 
@@ -208,3 +209,31 @@ extension DataFrame {
     updateData()
   }
 } 
+
+
+// Filter columns
+extension DataFrame {
+  mutating public func filter(pattern: String) {
+    // Filter on pattern and select the columns and then update the hashtables
+     self.columns = self.columns!.filter {$0.contains(pattern)}
+
+    // check which hashtables we have to update
+    var tmpTypes = hashTypes.filter({  Array(self.columns!).contains($0.key) }) 
+
+    for (col, val) in tmpTypes {
+  
+      if val == "Int" {
+        hashInt = hashInt.filter({  Array(self.columns!).contains($0.key) }) 
+      }
+      if val == "Double" {
+        hashDouble = hashDouble.filter({  Array(self.columns!).contains($0.key) }) 
+      }
+      if val == "String" {
+        hashString = hashString.filter({  Array(self.columns!).contains($0.key) }) 
+      }
+    
+    }
+    // Update data
+    updateData()
+  }
+}

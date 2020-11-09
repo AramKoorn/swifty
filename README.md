@@ -5,7 +5,6 @@ todo:
 - df["newcol"] = 2
 - Conditional queries --> df.loc["col1" == "foo" && "col2 == "bar"]
 - Check how unittests work for other packages
-- Make unittesting work!!!!!!!!!!
 - DataFrame slicing 
 - make something that eay identified if string of float
 
@@ -14,12 +13,13 @@ todo:
 WHat to do when the skeleton of of dataframe is there (Order based on priority)
 - drop columns ✓
 - rename columns ✓
-- add filter method 
+- add filter method ✓
 - read and write csv
 - merge 
 - groupby
 - update documentation
 - dropna
+- Clean up code
 
 Ideas
 - Create own type (like np.array)
@@ -36,13 +36,13 @@ df.col1 --> Series. So this means that col1 is hashey to retrieve the values wit
 swift doc generate /home/aram/projects/swift/swifty/Sources/ --module-name swifty --output Documentation --format html
 
 # Minimum viable features to release
-- Be able to create a dataframe from random data
+- Be able to create a dataframe from random data ✓
 - Subsripting
 - read and write CSV files
 - Proper unit tests
-- Rename columns
-- drop columns
-- filter DataFrame based of pattern
+- Rename columns ✓
+- drop columns ✓
+- filter DataFrame based of pattern ✓
 - Be able to do operations on columns
 - Get DataFrame dimensions
 - Query data

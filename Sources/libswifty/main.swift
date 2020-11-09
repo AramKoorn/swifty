@@ -44,4 +44,10 @@ print(df2)
 
 print(df1.shape())
 print(df1.hashInt["col4"]!.values)
+let arr = ["Hello","Bye","Halo"]
+let filtered = arr.filter { $0.contains("lo") }
+print(filtered)
 
+
+var x = ["el1", "el2", "el3", "col1", "col2"]
+print(x.filter {$0.contains("el")})
