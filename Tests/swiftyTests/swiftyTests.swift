@@ -1,6 +1,8 @@
 @testable import swifty
 import XCTest
 import class Foundation.Bundle
+var df = DataFrame1(data: [[1, 2, 3]])
+
 
 final class swiftyTests: XCTestCase {
     func testExample() throws {
@@ -30,15 +32,8 @@ final class swiftyTests: XCTestCase {
         XCTAssertEqual(output, "Hello, world!\n")
     }
 
-    func hoi(){
+    func testHoi(){
       XCTAssertEqual("s", "s")
-    }
-
-    func testColumns(){
-      let df = doesNothing()
-      XCTAssertEqual("s", "s")
-
-      //XCTAssertEqual(df.columns, ["hoi", "poep"])
     }
 
     /// Returns path to the built products directory.
@@ -53,9 +48,8 @@ final class swiftyTests: XCTestCase {
       #endif
     }
 
-    static var allTests = [
-        ("testExample", testExample),
-        ("hoi", hoi),
-        ("testColumns", testColumns)
-    ]
+    // static var allTests = [
+    //     ("testExample", testExample),
+    //     ("testHoi", testHoi),
+    // ]
 }

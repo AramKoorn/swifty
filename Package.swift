@@ -12,7 +12,8 @@ let package = Package(
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
+        .target( name: "libswifty", dependencies: ["swifty"]),
         .target(name: "swifty",  dependencies: [.product(name: "Path", package: "Path.swift")]),
-        .testTarget(name: "swiftyTests",dependencies: ["swifty"]),
+        .testTarget(name: "swiftyTests",dependencies:  ["libswifty"]),
     ]
 )

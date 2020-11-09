@@ -1,4 +1,7 @@
 import Foundation
+import swifty
+
+import Foundation
 import Path
 
 //readCSV(loc: "projects/swift/swifty/Sources/swifty/data/testData.csv")
@@ -40,3 +43,4 @@ print(df2)
 
 
 print(df1.shape())
+

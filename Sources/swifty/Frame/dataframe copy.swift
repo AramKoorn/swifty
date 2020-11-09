@@ -1,22 +1,22 @@
 public struct DataFrame1{
     
     // Initializers
-    var data: Array<Array<Any>>?
-    var columns: [String]? // columns can be int, double or string
-    var index: [Int]?
+    public var data: Array<Array<Any>>?
+    public var columns: [String]? // columns can be int, double or string
+    public var index: [Int]?
     
     // Hashtables --> Keys are the columns
-    var hashInt = Dictionary<String, Series<Int>>()
-    var hashDouble = Dictionary<String, Series<Double>>()
-    var hashString = Dictionary<String, Series<String>>()
+    public var hashInt = Dictionary<String, Series<Int>>()
+    public var hashDouble = Dictionary<String, Series<Double>>()
+    public var hashString = Dictionary<String, Series<String>>()
     
     // Hashtable for the types
-    var hashTypes = Dictionary<String, String>()
+    public var hashTypes = Dictionary<String, String>()
 
     // Initialize values
-    var values = [Any]()
+    public var values = [Any]()
 
-    init(data: Array<Array<Any>>? = nil, columns: [String]? = nil, index: [Int]? = nil) {
+    public init(data: Array<Array<Any>>? = nil, columns: [String]? = nil, index: [Int]? = nil) {
         self.data = data
         self.columns = columns
         self.index = index
@@ -119,7 +119,7 @@ extension DataFrame1 {
 // Rename columns
 extension DataFrame1 {
 
-    mutating func rename(mapper: Dictionary<String, String>) {
+    mutating public func rename(mapper: Dictionary<String, String>) {
 
         for (k, v) in mapper {
 
