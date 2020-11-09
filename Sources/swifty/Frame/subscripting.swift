@@ -1,44 +1,31 @@
-// // Subscript columns e.g. df["col1"]
-// // subscript should eventually return DataFrame
-// extension DataFrame {
-// public subscript(columns: Array<Any>) -> Array<Any> {
-
-
-
-//     get {
-//             let cols = columns.compactMap { $0 as? String }
-
-//     //var dict_sub = hashTable.filter({  columns.contains($0.key) })
-//     //updateMembers(hashTable: hashTable, hashTableIndex: hashTableIndex) 
-//     //self.test(
-
+extension DataFrame {
+public subscript(columns: Array<String>) -> DataFrame {
+  get {
+   
+    // Columns to get
+    var tmpData = Array<Array<Any>>()
     
-//     var sub = hashTable["data"] as! Dictionary<String, Array<Any>>
-//     var dict_sub = sub.filter({  cols.contains($0.key) }) 
-//     return DataFrame(data: Array(dict_sub.values), columns: Array(dict_sub.keys), index: self.index).data!
-//     }
+    // check which hashtables we have to update
+    var tmpTypes = hashTypes.filter({  Array(columns).contains($0.key) }) 
 
-//     set {
-//     var sub = hashTable["data"] as! Dictionary<String, Any>
-    
-//     if (columns.count > 1 ) {
+    for (col, val) in tmpTypes {
+  
+      if val == "Int" {
+        tmpData.append(hashInt[col]!.values)
+      }
+      if val == "Double" {
+        tmpData.append(hashDouble[col]!.values)
+      }
+      if val == "String" {
+        tmpData.append(hashString[col]!.values)
+      }
+    }
+    // Get columns from the hashtable and get the values
+    return DataFrame(data: tmpData,  columns: columns, index: self.index)
+  }
 
-//     }
-//     else {
-//             let cols = columns.compactMap { $0 as? String }
-
-//         sub[cols[0]] = newValue
-//         hashTable["data"] = sub
-//     }
-
-//     updateSelf(table: hashTable)
-//     // data = Array(sub.values)
-//     // columns =  Array(sub.keys)
-
-//     //DataFrame(data: Array(sub.values), columns: Array(sub.keys), index: self.index)
-
-
-       
-//     }
-// }
-// }
+  set {
+     
+    }
+  }
+}

@@ -25,6 +25,7 @@ public class TestFrame:  XCTestCase {
         ("testRename", testRename),
         ("testDropOneColumn", testDropOneColumn),
         ("testDropMultipleColumn", testDropMultipleColumn),
+        ("testGetSubscripting", testGetSubscripting),
        //("testRename", testRename),
     ]
   
@@ -62,6 +63,16 @@ public class TestFrame:  XCTestCase {
                            columns: ["col1", "col2", "el1", "el2"] )
         df.filter(pattern: "el")
         XCTAssertEqual(df.columns!,  ["el1", "el2"])
+    }
+    // Test if subscripting returns the correct dataframe 
+    public func testGetSubscripting() {
+        var df = DataFrame(data: [[1], [2], [3], [4]],
+                           columns: ["col1", "col2", "el1", "el2"] )
+        var newDF = df[["col1", "el2"]]
+        XCTAssertEqual(newDF.columns!,  ["col1", "el2"])
+        XCTAssertEqual(newDF.hashInt["col1"]!.values, [1])
+        XCTAssertEqual(newDF.hashInt["el2"]!.values, [4])
+        XCTAssertEqual(Array(newDF.hashString.keys), [])
     }
 }
 
