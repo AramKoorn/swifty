@@ -26,6 +26,8 @@ public class TestFrame:  XCTestCase {
         ("testDropOneColumn", testDropOneColumn),
         ("testDropMultipleColumn", testDropMultipleColumn),
         ("testGetSubscripting", testGetSubscripting),
+        ("testSetSubscripting", testSetSubscripting),
+        ("testConcat", testConcat),
        //("testRename", testRename),
     ]
   
@@ -73,6 +75,20 @@ public class TestFrame:  XCTestCase {
         XCTAssertEqual(newDF.hashInt["col1"]!.values, [1])
         XCTAssertEqual(newDF.hashInt["el2"]!.values, [4])
         XCTAssertEqual(Array(newDF.hashString.keys), [])
+    }
+    public func testSetSubscripting() {
+        var df = DataFrame(data: [[1], [2], [3], [1]],
+                           columns: ["col1", "col2", "el1", "el2"] )
+        df[["newCol"]] = df[["el2"]]
+        XCTAssertEqual(df.columns!, ["col1", "col2", "el1", "el2", "newCol"])
+        XCTAssertEqual(df.hashInt["newCol"]!.values, [1])
+    }
+    public func testConcat() {
+        var df1 = DataFrame(data: [[1], [2]], columns: ["col1", "col2"] )
+        var df2 = DataFrame(data: [["foo"], ["bar"]], columns: ["col3", "col4"] )
+        df1.concat(data: [df2])
+        print(df1.columns)
+        XCTAssertEqual(df1.columns!, ["col1", "col2", "col3", "col4"])
     }
 }
 

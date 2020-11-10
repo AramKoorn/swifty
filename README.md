@@ -38,6 +38,7 @@ swift doc generate /home/aram/projects/swift/swifty/Sources/ --module-name swift
 # Minimum viable features to release
 - Be able to create a dataframe from random data ✓
 - Subsripting
+- Make a concat function
 - read and write CSV files
 - Proper unit tests
 - Rename columns ✓

@@ -235,3 +235,22 @@ extension DataFrame {
     updateData()
   }
 }
+
+
+extension DataFrame {
+  // For now we can only merge on the rows later add option to concat on columns
+  mutating public func concat(data: [DataFrame], axis: String = "rows") {
+    for frame in data {
+      // check if Nr rows are the same for both dataframes
+      
+      // Merge the hash tables
+      frame.hashTypes.forEach { (key, value) in self.hashTypes[key] = value }
+      frame.hashInt.forEach { (key, value) in self.hashInt[key] = value }
+      frame.hashDouble.forEach { (key, value) in self.hashDouble[key] = value }
+      frame.hashString.forEach { (key, value) in self.hashString[key] = value }
+
+      // update columns
+      self.columns! += frame.columns!
+    }
+  }
+}
