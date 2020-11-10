@@ -88,8 +88,6 @@ extension DataFrame {
 
         for col in self.columns! {
 
-            print(col)
-            
             if hashTypes[col]! == "Int" {
 
                 newData.append(hashInt[col]!)

@@ -44,10 +44,10 @@ swift doc generate /home/aram/projects/swift/swifty/Sources/ --module-name swift
 - drop columns ✓
 - filter DataFrame based of pattern ✓
 - Be able to do operations on columns
-- Get DataFrame dimensions
+- Get DataFrame dimensions ✓ 
 - Query data
 - Documentation
-- Replace values
+- Replace values condtional
 
 # Unit testing framework
 
