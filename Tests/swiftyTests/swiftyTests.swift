@@ -1,8 +1,6 @@
 @testable import swifty
 import XCTest
 import class Foundation.Bundle
-var df = DataFrame(data: [[1, 2, 3]])
-// print(df)
 
 final class swiftyTests: XCTestCase {
 

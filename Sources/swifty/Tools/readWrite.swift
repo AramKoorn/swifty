@@ -7,7 +7,7 @@ import Foundation
 // public func readCSV(loc: String) {
 public func readCSVContent(loc: String) -> String {
     do {
-       let fullPath = Path.home/loc
+       let fullPath = Path.cwd/loc
        let content = try String(contentsOf: fullPath)
          return content
     }
@@ -22,6 +22,7 @@ public func readCSVContent(loc: String) -> String {
 /// Returns csv content to a swifty DataFrame
     ///   - Parameters:
     ///   - loc: location of the csv file
+/// Converts everything to String
 /// note: Assumes the headers start at the first row 
 /// note: can also not deal with empty cells
 // public func readCSV(loc: String) {
@@ -47,7 +48,7 @@ public func readCSV(loc: String) -> DataFrame {
 
     var dat = [[Any]]()
 
-    for c in 0..<n_cols{
+    for c in 0..<n_cols {
         var tmp = Array<Any> ()
         // skip the first row
         for r in 1..<n_rows {  
@@ -56,8 +57,17 @@ public func readCSV(loc: String) -> DataFrame {
         dat.append(tmp)
     }
 
+    // Check if we can cast the string arrays to int or doubles
+    var newdat = [[Any]]()
+
+
     // Create the DataFrame
     var df = DataFrame(data: dat, columns: col)
 
     return df
+}
+
+extension DataFrame {
+  public func writeCSV(loc: String) {
+  }
 }

@@ -55,7 +55,7 @@ public subscript(columns: Array<String>) -> DataFrame {
     updateData()
 
     }
-     
+
     }
   }
 }

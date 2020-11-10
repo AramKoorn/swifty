@@ -4,6 +4,10 @@ import swifty
 import Foundation
 import Path
 
+
+print(Path.home)
+print(Path.cwd)
+
 //readCSV(loc: "projects/swift/swifty/Sources/swifty/data/testData.csv")
 
 // // Init a DataFrame
@@ -11,9 +15,9 @@ import Path
 // df[["newcol1"]] = df[["hoi"]]  // test if subsripting works
 
 // // test if reading of CSV files works
-// var loc = "projects/swift/swifty/Sources/swifty/data/testData.csv"
-// var hoi = readCSV(loc: loc)
-// print(hoi)
+var loc = "Tests/swiftyTests/TestData/testData.csv"
+var hoi = readCSV(loc: loc)
+print(hoi)
 
 
 // // Test if query works

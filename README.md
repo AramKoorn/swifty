@@ -21,10 +21,6 @@ WHat to do when the skeleton of of dataframe is there (Order based on priority)
 - dropna
 - Clean up code
 
-Ideas
-- Create own type (like np.array)
-
-
 --------
 Train of thought:
 1. for every array in Data it maps it to a Series. The series already casts the array
@@ -37,21 +33,26 @@ swift doc generate /home/aram/projects/swift/swifty/Sources/ --module-name swift
 
 # Minimum viable features to release
 - Be able to create a dataframe from random data ✓
-- Subsripting
-- Make a concat function
+- Subsripting ✓
+- Make a concat function ✓
+- create an update data based on index function
 - read and write CSV files
-- Proper unit tests
+  1. Should be read in relative to your root directory
+  2. Writing to csv should also be relarive from cwd
 - Rename columns ✓
 - drop columns ✓
 - filter DataFrame based of pattern ✓
 - Be able to do operations on columns
 - Get DataFrame dimensions ✓ 
 - Query data
-- Documentation
 - Replace values condtional
 
-# Unit testing framework
+# Always ongoing
+- Write Unit tests
+- Documentation
 
 # Nice to haves
 - Slicing
+- Be able to work with dates
+- Convert column to different type
 
