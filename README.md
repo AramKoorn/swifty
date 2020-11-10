@@ -14,7 +14,7 @@ WHat to do when the skeleton of of dataframe is there (Order based on priority)
 - drop columns ✓
 - rename columns ✓
 - add filter method ✓
-- read and write csv
+- read and write csv ✓ 
 - merge 
 - groupby
 - update documentation
@@ -36,9 +36,9 @@ swift doc generate /home/aram/projects/swift/swifty/Sources/ --module-name swift
 - Subsripting ✓
 - Make a concat function ✓
 - create an update data based on index function
-- read and write CSV files
-  1. Should be read in relative to your root directory
-  2. Writing to csv should also be relarive from cwd
+- read and write CSV files ✓
+  1. Should be read in relative to your root directory ✓
+  2. Writing to csv should also be relarive from cwd ✓
 - Rename columns ✓
 - drop columns ✓
 - filter DataFrame based of pattern ✓

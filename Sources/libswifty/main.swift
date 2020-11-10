@@ -64,3 +64,7 @@ print(dfNew)
 df1[["newCol"]] = df1[["col4"]]
 
 print(df1.columns!)
+df1.writeCSV(loc: "testWrite.csv")
+
+var p = Path.home/"testWrite.csv"
+try p.delete()

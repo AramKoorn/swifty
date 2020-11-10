@@ -67,7 +67,48 @@ public func readCSV(loc: String) -> DataFrame {
     return df
 }
 
+// Write DataFrame to CSV file
 extension DataFrame {
   public func writeCSV(loc: String) {
+
+
+          let p = Path.cwd/loc
+ do {    // var csvString = "column1, columns2 \n val1, val2"
+          var csvString = self.columns!.joined(separator: ",") + "\n"
+
+          // build the csv string
+          // loop over roops and then colulms comlexity O(n^2)
+          let rows = self.shape().0
+
+          for row in Array(0..<rows) {
+
+            var tmp = [String]()
+
+            for col in self.columns! {
+
+              if hashTypes[col]! == "Int" {
+
+                  tmp.append(String(hashInt[col]!.values[row]))
+              }
+
+              if hashTypes[col]! == "Double" {
+
+                  tmp.append(String(hashDouble[col]!.values[row]))
+              }
+              
+              if hashTypes[col]! == "String" {
+                  tmp.append(String(hashString[col]!.values[row]))
+
+              }
+
+            }
+            csvString += tmp.joined(separator: ",") + "\n"
+
+          }
+          
+            try csvString.write(to: p, atomically: true, encoding: .utf8)
+        } catch {
+            print("error creating file")
+        }
   }
 }
