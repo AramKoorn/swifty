@@ -66,5 +66,10 @@ df1[["newCol"]] = df1[["col4"]]
 print(df1.columns!)
 df1.writeCSV(loc: "testWrite.csv")
 
-var p = Path.home/"testWrite.csv"
-try p.delete()
+
+df1.query(column: "col1", values: [1, 2])
+
+print("----------------------------")
+print(df1)
+print("----------------------------")
+print(df1.values)

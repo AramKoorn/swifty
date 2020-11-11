@@ -84,6 +84,7 @@ extension DataFrame {
     mutating func updateData() {
 
         var newData = [Any]()
+        var data = [[Any]]()
         //newData = Array<Array<Any>>?
 
         for col in self.columns! {
@@ -91,23 +92,57 @@ extension DataFrame {
             if hashTypes[col]! == "Int" {
 
                 newData.append(hashInt[col]!)
+                data.append(hashInt[col]!.values)
             }
 
             if hashTypes[col]! == "Double" {
 
                 newData.append(hashDouble[col]!)
+                data.append(hashDouble[col]!.values)
             }
             
             if hashTypes[col]! == "String" {
 
                 newData.append(hashString[col]!)
+                data.append(hashString[col]!.values)
             }
         }
 
         // Update values
+        self.data! = data
         self.values = newData
 
-    }
+  }
+}
+
+
+extension DataFrame { 
+  // The assumption is that self.index has already been updated
+  mutating func updateDataOnIndex() {
+
+    for col in self.columns! {
+
+
+            if hashTypes[col]! == "Int" {
+              
+              hashInt[col]!.values = self.index!.map { hashInt[col]!.values[$0] }
+
+            }
+
+            if hashTypes[col]! == "Double" {
+              hashDouble[col]!.values = self.index!.map { hashDouble[col]!.values[$0] }
+            }
+            
+            if hashTypes[col]! == "String" {
+              hashString[col]!.values = self.index!.map { hashString[col]!.values[$0] }
+            }
+
+    } 
+
+  // Update the data
+  updateData() 
+
+  }
 }
 
 // Rename columns

@@ -1,28 +1,42 @@
-// public extension DataFrame {
+public extension DataFrame {
 
-//     public func query(column: String, values: Array<Any>?) -> DataFrame {
+    public mutating func query(column: String, values: [Any]) {
 
-//         var store_index = [Int]()
+      //indices to keep 
+      var storeIndex = [Int]()
 
+      // add indices to StoreIndex 
+      if hashTypes[column]! == "Int" {
+          var val = values as! [Int]
+          let l = hashInt[column]!.values
+          for v in val {
+            let idx = l.indices.filter {l[$0] == v}
+            storeIndex += idx
+          }
+      }
+      if hashTypes[column]! == "Double" {
+          var val = values as! [Double]
+          let l = hashDouble[column]!.values
+          for v in val {
+            let idx = l.indices.filter {l[$0] == v}
+            storeIndex += idx
+          }
+      }
+      if hashTypes[column]! == "String" {
+          var val = values as! [String]
+          let l = hashString[column]!.values
+          for v in val {
+            let idx = l.indices.filter {l[$0] == v}
+            storeIndex += idx
+          }
+      }
 
-//         var dict = castToDict(notDictYet: hashTable["data"])
-//         var vals = values as! [String]
-//         var t = 1
-        
-//         //var castValues = values!
+      // filter the index
+      self.index! = storeIndex.map {self.index![$0] }
+     
+      // Update data based on index
+      updateDataOnIndex()
 
+  }
 
-//         for (idx, val) in dict[column]!.enumerated() {
-//             if (vals.contains(val as! String) ) {
-//                 store_index.append(idx)
-//             }
-//             print(idx, val, vals)
-//         }
-        
-//         var x = 2
-
-
-//         return DataFrame(data: [[]])
-//     }
-
-// }
+}
