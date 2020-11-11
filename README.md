@@ -1,5 +1,24 @@
-# swifty 
-![Platforms](https://img.shields.io/badge/platforms-Linux-lightgrey)
+# swifty  ![Platforms](https://img.shields.io/badge/platforms-Linux-lightgrey)
+
+With this library you can easily transform and manipulate data in in the strongly typed Swift language.
+The goal is to build a data science ecosystem in Swift without de use of third party libraries.
+
+# Requirements
+- Swift V>=5.2
+- Path.swift
+- Linux (Not tested on IOS yet)
+
+
+# Usage
+
+```swift
+import swifty
+
+
+```
+
+# What is on the roadmap
+- groupby
 
 todo:
 - Make sure that we can initialize an empty dataframe
