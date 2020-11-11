@@ -1,4 +1,7 @@
-# swifty https://img.shields.io/badge/<Platforms>-<Linus>-<lightgrey>
+# swifty 
+x-special/nautilus-clipboard
+copy
+file:///home/aram/Downloads/platforms-Linux-lightgrey.svg
 
 todo:
 - Make sure that we can initialize an empty dataframe
