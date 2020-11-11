@@ -69,7 +69,3 @@ df1.writeCSV(loc: "testWrite.csv")
 
 df1.query(column: "col1", values: [1, 2])
 
-print("----------------------------")
-print(df1)
-print("----------------------------")
-print(df1.values)

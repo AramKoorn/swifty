@@ -28,6 +28,7 @@ public class TestFrame:  XCTestCase {
         ("testGetSubscripting", testGetSubscripting),
         ("testSetSubscripting", testSetSubscripting),
         ("testConcat", testConcat),
+        ("testQuery", testQuery),
        //("testRename", testRename),
     ]
   
@@ -89,6 +90,15 @@ public class TestFrame:  XCTestCase {
         df1.concat(data: [df2])
         print(df1.columns)
         XCTAssertEqual(df1.columns!, ["col1", "col2", "col3", "col4"])
+    }
+    public func testQuery() {
+        var df = DataFrame(data: [[1, 2, 3], [2, 2, 5], ["foo", "bar","baz"]],
+                            columns: ["col1", "col2", "col3"])
+        df.query(column: "col3", values: ["bar", "baz"])
+        XCTAssertEqual(df.columns!, ["col1", "col2", "col3"])
+        XCTAssertEqual(df.hashInt["col1"]!.values, [2, 3])
+        XCTAssertEqual(df.hashString["col3"]!.values, ["bar","baz"])
+        XCTAssertEqual(df.index!, [1, 2])
     }
 }
 
