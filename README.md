@@ -1,4 +1,4 @@
-# swifty
+# swifty https://img.shields.io/badge/<Platforms>-<Linus>-<lightgrey>
 
 todo:
 - Make sure that we can initialize an empty dataframe
