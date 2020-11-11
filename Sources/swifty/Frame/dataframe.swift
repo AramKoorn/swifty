@@ -289,3 +289,43 @@ extension DataFrame {
     }
   }
 }
+
+extension DataFrame {
+  mutating public func replace(column: String, mapper: Dictionary<AnyHashable, Any>) {
+    
+            if hashTypes[column]! == "Int" {
+              
+              // cast mapping to correct type 
+              let map = mapper as! [Int:Int] 
+              for (k, v) in map {
+                hashInt[column]!.values = hashInt[column]!.values.map({ return $0 == k ? v : $0 }) 
+              }
+
+                
+            }
+
+            if hashTypes[column]! == "Double" {
+
+              // cast mapping to correct type 
+              let map = mapper as! [Double:Double] 
+              for (k, v) in map {
+                hashDouble[column]!.values = hashDouble[column]!.values.map(
+                  { return $0 == k ? v : $0 }) 
+              }
+            }
+            
+            if hashTypes[column]! == "String" {
+              
+              // cast mapping to correct type 
+              let map = mapper as! [String:String] 
+              for (k, v) in map {
+                hashString[column]!.values = hashString[column]!.values.map(
+                  { return $0 == k ? v : $0 }) 
+              }
+            }
+
+
+            // Update data
+            updateData()
+  }
+}

@@ -29,6 +29,7 @@ public class TestFrame:  XCTestCase {
         ("testSetSubscripting", testSetSubscripting),
         ("testConcat", testConcat),
         ("testQuery", testQuery),
+        ("testReplace", testReplace),
        //("testRename", testRename),
     ]
   
@@ -99,6 +100,13 @@ public class TestFrame:  XCTestCase {
         XCTAssertEqual(df.hashInt["col1"]!.values, [2, 3])
         XCTAssertEqual(df.hashString["col3"]!.values, ["bar","baz"])
         XCTAssertEqual(df.index!, [1, 2])
+    }
+    public func testReplace() {
+        var df = DataFrame(data: [[1, 2, 3], [2, 2, 5], ["foo", "bar","baz"]],
+                            columns: ["col1", "col2", "col3"])
+        df.replace(column: "col3", mapper: ["bar": "vis", "baz": "hello"])
+        XCTAssertEqual(df.columns!, ["col1", "col2", "col3"])
+        XCTAssertEqual(df.hashString["col3"]!.values, ["foo", "vis", "hello"])
     }
 }
 

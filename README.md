@@ -15,10 +15,11 @@ WHat to do when the skeleton of of dataframe is there (Order based on priority)
 - rename columns ✓
 - add filter method ✓
 - read and write csv ✓ 
+- Deal with nil values
 - merge 
 - groupby
 - update documentation
-- dropna
+- dropnil
 - Clean up code
 
 --------
@@ -35,7 +36,7 @@ swift doc generate /home/aram/projects/swift/swifty/Sources/ --module-name swift
 - Be able to create a dataframe from random data ✓
 - Subsripting ✓
 - Make a concat function ✓
-- create an update data based on index function
+- create an update data based on index function ✓
 - read and write CSV files ✓
   1. Should be read in relative to your root directory ✓
   2. Writing to csv should also be relarive from cwd ✓
@@ -44,8 +45,8 @@ swift doc generate /home/aram/projects/swift/swifty/Sources/ --module-name swift
 - filter DataFrame based of pattern ✓
 - Be able to do operations on columns
 - Get DataFrame dimensions ✓ 
-- Query data
-- Replace values condtional
+- Query data ✓
+- Replace values condtional ✓
 
 # Always ongoing
 - Write Unit tests
@@ -54,5 +55,6 @@ swift doc generate /home/aram/projects/swift/swifty/Sources/ --module-name swift
 # Nice to haves
 - Slicing
 - Be able to work with dates
+- Print representation of the dataframe
 - Convert column to different type
 

@@ -64,8 +64,7 @@ print(dfNew)
 df1[["newCol"]] = df1[["col4"]]
 
 print(df1.columns!)
-df1.writeCSV(loc: "testWrite.csv")
 
-
-df1.query(column: "col1", values: [1, 2])
+df1.replace(column: "col2", mapper: ["2": "foo"])
+print(df1)
 
