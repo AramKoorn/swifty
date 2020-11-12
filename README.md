@@ -2,11 +2,11 @@
 
 With this library you can easily transform and manipulate data in in the strongly typed Swift language.
 The goal is to build a data science ecosystem in Swift without de use of third party libraries. At this point Swifty is in an alpha version with minimum functionalities to do data wrangling (see usage for examples). In future releases more checks and functionalities will be added. 
+
 # Requirements
 - Swift V>=5.2
 - Path.swift
-- Linux (Not tested on IOS yet)
-
+- Linux (Not officialy tested on macOS but it should work on this OS as well)
 
 # Usage
 
@@ -17,7 +17,8 @@ import swifty
 let df = DataFrame(data: [[1, 2, 3], ["foo", "bar", "vis"]])
 
 // Create Dataframe and specify column names and index 
-let df = DataFrame(data: [[1, 2, 3], ["foo", "bar", "vis"]], columns: ["col1", "col2"], index: [0, 1, 2])
+let df = DataFrame(data: [[1, 2, 3], ["foo", "bar", "vis"]], 
+          columns: ["col1", "col2"], index: [0, 1, 2])
 
 // Use subscripting
 var df = DataFrame(data: [[1, 2, 3], [4, 5, 6]], columns: ["col1", "col2"])
@@ -30,7 +31,7 @@ df[["newCol"]] = df[["col2"]]
 | 2    | 5    | 5      |
 | 3    | 6    | 6      |
 
-// Read/write CSV files
+// Read/write CSV files (relative path of your cwd)
  let df = readCSV(loc: "pathOfCSVFile.csv")
 df.writeCSV(loc: "SomePath.csv")
 
@@ -75,42 +76,28 @@ df.replace(column: "col3", mapper: ["bar": "vis", "baz": "hello"])
 ```
 
 # What is on the roadmap
-- groupby
+- Groupby
 - Merge
+- Melt
+- Pivot
+- Casting columns to different types
 - Documentation
 - Slicing
 - Print representation of the dataframe
-
-# Minimum viable features to release
-- Be able to create a dataframe from random data ✓
-- Subsripting ✓
-- Make a concat function ✓
-- create an update data based on index function ✓
-- read and write CSV files ✓
-  1. Should be read in relative to your root directory ✓
-  2. Writing to csv should also be relarive from cwd ✓
-- Rename columns ✓
-- drop columns ✓
-- filter DataFrame based of pattern ✓
-- Be able to do operations on columns
-- Get DataFrame dimensions ✓ 
-- Query data ✓
-- Replace values condtional ✓
-
-# Always ongoing
-- Write Unit tests
-- Documentation
-
-# Nice to haves
-- Slicing
-- Be able to work with dates
 - Convert column to different type
+- Be able to work with dates
 
-# Installation
+# Installation SPM
+
+add this your Package.swift file
+```
+Code here
+```
 
 # Install and get Swifty!
 
 ![Alt Text](https://media.giphy.com/media/ZGIb81A2Z4dcGc43ku/giphy.gif)
 
-# Generate documentation
+# Documentation
+
 swift doc generate /home/aram/projects/swift/swifty/Sources/ --module-name swifty --output Documentation --format html
