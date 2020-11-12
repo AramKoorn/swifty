@@ -1,23 +1,23 @@
 import XCTest
 import swifty
 
-extension swiftyTests {
-    func testAdd() {
-        XCTAssertEqual(1, 1)
-    }   
+// extension swiftyTests {
+//     func testAdd() {
+//         XCTAssertEqual(1, 1)
+//     }   
 
-        func testMin() {
-        XCTAssertEqual(1, 1)
-    }     
+//         func testMin() {
+//         XCTAssertEqual(1, 1)
+//     }     
 
-    static var allTests = [
-        ("tesAdd", testAdd),
-        ("tesHoi", testHoi),
-        ("tesMin", testMin),
+//     static var allTests = [
+//         ("tesAdd", testAdd),
+//         ("tesHoi", testHoi),
+//         ("tesMin", testMin),
 
-    ]
+//     ]
 
-} 
+// } 
 
 public class TestFrame:  XCTestCase {
     public static var allTests = [
@@ -36,7 +36,6 @@ public class TestFrame:  XCTestCase {
     // test if the column names are correct
     public func testCol() {
         let df = DataFrame(data: [[1, 2, 3]], columns: ["col1"])
-        print(df.values)
         XCTAssertEqual(df.columns!,  ["col1"])
     }
 
@@ -97,7 +96,6 @@ public class TestFrame:  XCTestCase {
         var df1 = DataFrame(data: [[1], [2]], columns: ["col1", "col2"] )
         var df2 = DataFrame(data: [["foo"], ["bar"]], columns: ["col3", "col4"] )
         df1.concat(data: [df2])
-        print(df1.columns)
         XCTAssertEqual(df1.columns!, ["col1", "col2", "col3", "col4"])
     }
     public func testQuery() {
