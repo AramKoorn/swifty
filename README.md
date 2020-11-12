@@ -4,13 +4,12 @@ With this library you can easily transform and manipulate data in in the strongl
 The goal is to build a data science ecosystem in Swift without de use of third party libraries. At this point Swifty is in an alpha version with minimum functionalities to do data wrangling (see usage for examples). In future releases more checks and functionalities will be added. 
 
 # Requirements
-- Swift V>=5.2 (tests for other versions will follow soon).
-- Path.swift
+-  [Path.swift](https://github.com/mxcl/Path.swift)
 
 # Usage
 
 ```swift
-import swiftyfor
+import Swifty
 
 // Create a Dataframe (columns are automatically generated)
 let df = DataFrame(data: [[1, 2, 3], ["foo", "bar", "vis"]])
@@ -87,9 +86,29 @@ df.replace(column: "col3", mapper: ["bar": "vis", "baz": "hello"])
 
 # Installation SPM
 
-You can install swifty by using the Swift Package Mangager. add this your Package.swift file
+You can install swifty by using the Swift Package Mangager. Below you can find an example to import swifty for a project called my Project
 ```
-Code here
+// swift-tools-version:5.2
+// The swift-tools-version declares the minimum version of Swift required to build this package.
+
+import PackageDescription
+
+let package = Package(
+    name: "myProject",
+    dependencies: [(.package(url: "https://github.com/AramKoorn/swifty", from: "0.0.1"))
+        // Dependencies declare other packages that this package depends on.
+        // .package(url: /* package url */, from: "1.0.0"),
+    ],
+    targets: [
+        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
+        // Targets can depend on other targets in this package, and on products in packages which this package depends on.
+        .target(name: "myProject", dependencies: [.product(name: "swifty", package: "swifty")]),
+        .testTarget(
+            name: "myProjectTests",
+            dependencies: ["myProject"]),
+    ]
+)
+
 ```
 
 # Install and get Swifty!
