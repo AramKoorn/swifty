@@ -83,12 +83,11 @@ df.replace(column: "col3", mapper: ["bar": "vis", "baz": "hello"])
 - Documentation
 - Slicing
 - Print representation of the dataframe
-- Convert column to different type
 - Be able to work with dates
 
 # Installation SPM
 
-add this your Package.swift file
+You can install swifty by using the Swift Package Mangager. add this your Package.swift file
 ```
 Code here
 ```
@@ -98,5 +97,4 @@ Code here
 ![Alt Text](https://media.giphy.com/media/ZGIb81A2Z4dcGc43ku/giphy.gif)
 
 # Documentation
-
-swift doc generate /home/aram/projects/swift/swifty/Sources/ --module-name swifty --output Documentation --format html
+Documentation will be released soon!
