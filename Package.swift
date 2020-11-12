@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "swifty",
     products: [
-        .library(name: "Swifty", targets: ["swifty"]),
+        .library(name: "Swifty", targets: ["Swifty"]),
     ],
     dependencies: [.package(url: "https://github.com/mxcl/Path.swift.git", from: "1.0.0"),
         // Dependencies declare other packages that this package depends on.
