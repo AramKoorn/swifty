@@ -86,7 +86,7 @@ df.replace(column: "col3", mapper: ["bar": "vis", "baz": "hello"])
 
 # Installation SPM
 
-You can install swifty by using the Swift Package Mangager. Below you can find an example to import swifty for a project called my Project
+You can install swifty by using the Swift Package Mangager. Below you can find an example to import swifty for a project called myProject
 ```
 // swift-tools-version:5.2
 // The swift-tools-version declares the minimum version of Swift required to build this package.
