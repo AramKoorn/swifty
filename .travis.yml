@@ -4,9 +4,11 @@ install:
 language: generic
 sudo: required
 dist: bionic
+osx_image: xcode11.3
 
 os:
   - linux
+  - osx
 
 env:
   - SWIFT_VERSION=5.2.1
