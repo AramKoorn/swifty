@@ -13,3 +13,4 @@ env:
 
 script:
   - swift build
+  - swift test 
