@@ -1,0 +1,12 @@
+language: generic
+sudo: required
+dist: bionic
+
+os:
+  - linux
+
+env:
+  - SWIFT_VERSION=5.2.1
+
+script:
+  - swift build
