@@ -223,21 +223,20 @@ extension DataFrame {
     self.columns = self.columns!.filter( {!columns.contains($0)})  
 
     // check which hashtables we have to update
-    var tmpTypes = hashTypes.filter({  Array(columns).contains($0.key) }) 
 
-    for (col, val) in tmpTypes {
-  
-      if val == "Int" {
-        hashInt = hashInt.filter({  Array(columns).contains($0.key) }) 
+    for col in columns{
+
+    if hashTypes[col] == "Int" {
+      hashInt = hashInt.filter({  !Array(columns).contains($0.key) }) 
       }
-      if val == "Double" {
-        hashDouble = hashDouble.filter({  Array(columns).contains($0.key) }) 
+    if hashTypes[col] == "Double" {
+      hashDouble = hashDouble.filter({  !Array(columns).contains($0.key) }) 
       }
-      if val == "String" {
-        hashString = hashString.filter({  Array(columns).contains($0.key) }) 
+    if hashTypes[col] == "String" {
+      hashString = hashString.filter({  !Array(columns).contains($0.key) }) 
       }
-    
     }
+
     // Update data
     updateData()
   }
@@ -323,7 +322,6 @@ extension DataFrame {
                   { return $0 == k ? v : $0 }) 
               }
             }
-
 
             // Update data
             updateData()

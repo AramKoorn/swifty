@@ -24,13 +24,13 @@ public class TestFrame:  XCTestCase {
         ("testCol", testCol),
         ("testRename", testRename),
         ("testDropOneColumn", testDropOneColumn),
+        ("testRemapAndDrop", testRemapAndDrop),
         ("testDropMultipleColumn", testDropMultipleColumn),
         ("testGetSubscripting", testGetSubscripting),
         ("testSetSubscripting", testSetSubscripting),
         ("testConcat", testConcat),
         ("testQuery", testQuery),
         ("testReplace", testReplace),
-       //("testRename", testRename),
     ]
   
     // test if the column names are correct
@@ -54,6 +54,14 @@ public class TestFrame:  XCTestCase {
         XCTAssertEqual(df.columns!,  ["col1"])
         XCTAssertEqual(df.hashInt["col1"]!.values, [1, 2, 3])
     }
+
+    public func testRemapAndDrop() {
+        var df = DataFrame(data: [[1, 2, 3], [2, 3, 4]], columns: ["col1", "col2"])
+        df.rename(mapper: ["col2": "renamedCol"])
+        df.drop(columns: ["col1"])
+        XCTAssertEqual(df.columns!,  ["renamedCol"])
+    }
+
     // Test if dropping of column
     public func testDropMultipleColumn() {
         var df = DataFrame(data: [[1, 2, 3], ["2", "2", "foo"], [1, 2, 3]],
