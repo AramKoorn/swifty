@@ -9,7 +9,7 @@ The goal is to build a data science ecosystem in Swift without de use of third p
 # Usage
 
 ```swift
-import Swifty
+import swifty
 
 // Create a Dataframe (columns are automatically generated)
 let df = DataFrame(data: [[1, 2, 3], ["foo", "bar", "vis"]])
