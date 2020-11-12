@@ -1,7 +1,7 @@
 # swifty  ![Platforms](https://img.shields.io/badge/platforms-Linux-lightgrey)
 
 With this library you can easily transform and manipulate data in in the strongly typed Swift language.
-The goal is to build a data science ecosystem in Swift without de use of third party libraries. At this point Swifty is in an alpha version with minimum functionalities to do data wrangling (see usage for examples). In future releases we will add more checks and functionalities. 
+The goal is to build a data science ecosystem in Swift without de use of third party libraries. At this point Swifty is in an alpha version with minimum functionalities to do data wrangling (see usage for examples). In future releases more checks and functionalities will be added. 
 # Requirements
 - Swift V>=5.2
 - Path.swift
