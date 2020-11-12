@@ -68,3 +68,7 @@ print(df1.columns!)
 df1.replace(column: "col2", mapper: ["2": "foo"])
 print(df1)
 
+var df = DataFrame(data: [[1, 2, 3], [4, 5, 6]], columns: ["col1", "col2"])
+df[["newCol"]] = df[["col2"]]
+print("----------------")
+print(df)
