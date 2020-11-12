@@ -1,17 +1,16 @@
-# swifty  ![Platforms](https://img.shields.io/badge/platforms-Linux-lightgrey)
+# swifty  ![Platforms](https://img.shields.io/badge/platforms-Linux%20%7C%20MacOS-lightgrey) [![Build Status](https://travis-ci.com/AramKoorn/swifty.svg?token=JpKygpYAeEtSWFyNQ2fB&branch=main)](https://travis-ci.com/AramKoorn/swifty) ![Versions](https://img.shields.io/badge/Swift-5.2-orange)
 
 With this library you can easily transform and manipulate data in in the strongly typed Swift language.
 The goal is to build a data science ecosystem in Swift without de use of third party libraries. At this point Swifty is in an alpha version with minimum functionalities to do data wrangling (see usage for examples). In future releases more checks and functionalities will be added. 
 
 # Requirements
-- Swift V>=5.2
+- Swift V>=5.2 (tests for other versions will follow soon).
 - Path.swift
-- Linux (Not officialy tested on macOS but it should work on this OS as well)
 
 # Usage
 
 ```swift
-import swifty
+import swiftyfor
 
 // Create a Dataframe (columns are automatically generated)
 let df = DataFrame(data: [[1, 2, 3], ["foo", "bar", "vis"]])
