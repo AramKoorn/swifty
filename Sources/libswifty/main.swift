@@ -25,9 +25,9 @@ print(hoi)
 // df.query(column: "poep", values: ["3"])
 
 // Test the new dataframe structure 
-var df1 = DataFrame(data: [[1, 2, 3], ["1", "2", "3"], [1.1, 2.2, 3.3],
-                    [4, 6, 7]], columns: ["col1", "col2", "col3", "col4"])
-print(df1.shape())
+// var df1 = DataFrame(data: [[1, 2, 3], ["1", "2", "3"], [1.1, 2.2, 3.3],
+//                     [4, 6, 7]], columns: ["col1", "col2", "col3", "col4"])
+// print(df1.shape())
 
 // df1.rename(mapper: ["col1": "renamedCol1"])
 // df1.rename(mapper: ["col2": "foo"])
@@ -50,25 +50,37 @@ print(df1.shape())
 
 // print(df1[["col3", "col4"]])
 
-if df1 is String{
-  print("Object is DataFrame")
-        }
-  else {
-    print("This does not work!")
-}
+// if df1 is String{
+//   print("Object is DataFrame")
+//         }
+//   else {
+//     print("This does not work!")
+// }
 
-var dfNew = df1[["col4"]]
-print("----------------")
-print(dfNew)
+// var dfNew = df1[["col4"]]
+// print("----------------")
+// print(dfNew)
 
-df1[["newCol"]] = df1[["col4"]]
+// df1[["newCol"]] = df1[["col4"]]
 
-print(df1.columns!)
+// print(df1.columns!)
 
-df1.replace(column: "col2", mapper: ["2": "foo"])
+// df1.replace(column: "col2", mapper: ["2": "foo"])
+// print(df1)
+
+// var df = DataFrame(data: [[1, 2, 3], [4, 5, 6]], columns: ["col1", "col2"])
+// df[["newCol"]] = df[["col2"]]
+// print("----------------")
+// print(df)
+
+
+// print("------------------------)")
+
+// print(df[["newCol", "col1"]])
+
+
+var df1 = DataFrame(data: [[1, 2], ["a", "b"]], columns: ["col1", "col2"])
+var df2 = DataFrame(data: [[3, 4], ["c", "d"]], columns: ["col1", "col2"])
+
+df1.concat(data: [df2], axis: "rows")
 print(df1)
-
-var df = DataFrame(data: [[1, 2, 3], [4, 5, 6]], columns: ["col1", "col2"])
-df[["newCol"]] = df[["col2"]]
-print("----------------")
-print(df)

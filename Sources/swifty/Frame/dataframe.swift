@@ -279,13 +279,20 @@ extension DataFrame {
       
       // Merge the hash tables
       frame.hashTypes.forEach { (key, value) in self.hashTypes[key] = value }
-      frame.hashInt.forEach { (key, value) in self.hashInt[key] = value }
-      frame.hashDouble.forEach { (key, value) in self.hashDouble[key] = value }
-      frame.hashString.forEach { (key, value) in self.hashString[key] = value }
+      frame.hashInt.forEach { (key, value) in self.hashInt[key] = Series(
+      values: self.hashInt[key]!.values + value.values )}
+      frame.hashDouble.forEach { (key, value) in self.hashDouble[key] = Series(
+      values: self.hashDouble[key]!.values + value.values) }
+      frame.hashString.forEach { (key, value) in self.hashString[key] = Series(
+      values: self.hashString[key]!.values + value.values)}
 
-      // update columns
-      self.columns! += frame.columns!
     }
+
+    // update data
+    updateData()
+
+    // Update index
+    self.index = Array(0 ..< self.shape().0) 
   }
 }
 
