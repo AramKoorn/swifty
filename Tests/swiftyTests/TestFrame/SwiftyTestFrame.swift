@@ -93,10 +93,12 @@ public class TestFrame:  XCTestCase {
         XCTAssertEqual(df.hashInt["newCol"]!.values, [1])
     }
     public func testConcat() {
-        var df1 = DataFrame(data: [[1], [2]], columns: ["col1", "col2"] )
-        var df2 = DataFrame(data: [["foo"], ["bar"]], columns: ["col3", "col4"] )
-        df1.concat(data: [df2])
-        XCTAssertEqual(df1.columns!, ["col1", "col2", "col3", "col4"])
+      var df1 = DataFrame(data: [[1, 2], ["a", "b"]], columns: ["col1", "col2"])
+      var df2 = DataFrame(data: [[3, 4], ["c", "d"]], columns: ["col1", "col2"])
+      df1.concat(data: [df2], axis: "rows")
+      XCTAssertEqual(df1.columns!, ["col1", "col2"])
+      XCTAssertEqual(df1.hashInt["col1"]!.values, [1, 2, 3, 4])
+      XCTAssertEqual(df1.hashString["col2"]!.values, ["a", "b", "c", "d"])
     }
     public func testQuery() {
         var df = DataFrame(data: [[1, 2, 3], [2, 2, 5], ["foo", "bar","baz"]],

@@ -17,7 +17,7 @@ public subscript(columns: Array<String>) -> DataFrame {
         tmpData.append(hashString[col]!.values)
       }
     }
-    print(columns)
+
     // Get columns from the hashtable and get the values
     return DataFrame(data: tmpData,  columns: columns, index: self.index)
   }
