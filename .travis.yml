@@ -11,6 +11,8 @@ os:
   - osx
 
 env:
+  - SWIFT_VERSION=5.0
+  - SWIFT_VERSION=5.1
   - SWIFT_VERSION=5.2.1
 
 script:
